@@ -1,6 +1,5 @@
 import math
 import itertools
-import signal
 import time
 
 line_number = 1
@@ -8,7 +7,7 @@ max_slices = 0
 types = 0
 slices = []
 
-with open("a_example.in", "r") as pizza_info:
+with open("e_also_big.in", "r") as pizza_info:
     for line in pizza_info:
         if line_number == 1:
             numbers = line.split()
@@ -19,20 +18,14 @@ with open("a_example.in", "r") as pizza_info:
         else:
             slices = [int(i) for i in line.split()]
 
-print(max_slices)
+print(max_slices, types, slices)
 
-def average(l):
-    return sum(l) / len(l)
-
-subset_size = math.ceil(max_slices / average(slices))
-print(subset_size)
 
 # r=1812 (quite_big)
 
 def find_r(slices, num):
     largest_subset = 0
     r = 0
-
 
     while(largest_subset < num):
         if len(slices) < 10 + r:
@@ -42,16 +35,8 @@ def find_r(slices, num):
 
         for subset in itertools.combinations(sorted(slices, reverse=True), r=r):
             largest_subset = sum(subset)
-            break
-        
-        # if len(slices) < 10 + r:
-        #     r = len(slices)
-        # else:
-        #     r += 10
-    
+            break    
     return r
-
-print(find_r(slices, max_slices))
 
 def find_s(r):
     final_total = 0
@@ -60,7 +45,8 @@ def find_s(r):
     current_time = time.time()
 
     for subset in itertools.combinations(sorted(slices, reverse=True), r=r):
-        if time.time() - current_time > 2:
+
+        if ((time.time() - current_time) > 5):
             print("blah")
             return None
         
@@ -73,17 +59,26 @@ def find_s(r):
                     break
         else:
             pass#break
-    
+    if final_subset == []:
+        return None
     return final_subset
 
 r_val = find_r(slices, max_slices)
-
-for i in range(r_val, r_val-10, -1):
+current_guess = []
+for i in range(r_val, r_val-11, -1):
     print(i)
     res = find_s(i)
     if res is None:
         continue
+    if sum(res) != max_slices:
+        current_guess = res
+        continue
 
+    current_guess = res
     print()
+    print(res)
     print(sum(res))
     break
+
+print(current_guess)
+print(sum(current_guess))
