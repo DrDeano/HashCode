@@ -3,7 +3,7 @@ max_slices = 0
 types = 0
 slices = []
 
-with open("d_quite_big.in", "r") as pizza_info:
+with open("a_example.in", "r") as pizza_info:
     for line in pizza_info:
         if line_number == 1:
             numbers = line.split()
@@ -14,41 +14,9 @@ with open("d_quite_big.in", "r") as pizza_info:
         else:
             slices = [int(i) for i in line.split()]
 
-total_slices = 0
-indexes = []
-for i in range(len(slices)-1, -1, -1):
-    if (slices[i] + total_slices < max_slices):
-        total_slices += slices[i]
-        indexes.append(i)
-
-indexes.sort()
-
-
 print(max_slices, types, slices)
-print(total_slices, indexes)
 
-
-# void subsetSum(int set[], int subSet[], int n, int subSize, int total, int nodeCount ,int sum) {
-#    if( total == sum) {
-#       displaySubset(subSet, subSize);     //print the subset
-#       subsetSum(set,subSet,n,subSize-1,total-set[nodeCount],nodeCount+1,sum);     //for other subsets
-#       return;
-#    }else {
-#       for( int i = nodeCount; i < n; i++ ) {     //find node along breadth
-#          subSet[subSize] = set[i];
-#          subsetSum(set,subSet,n,subSize+1,total+set[i],i+1,sum);     //do for next node in depth
-#       }
-#    }
-# }
-
-# void findSubset(int set[], int size, int sum) {
-#    int *subSet = new int[size];     //create subset array to pass parameter of subsetSum
-#    subsetSum(set, subSet, size, 0, 0, 0, sum);
-#    delete[] subSet;
-# }
-
-def subsetsum(array,num):
-
+def subsetsum(array, num):
     if num == 0 or num < 1:
         return None
     elif len(array) == 0:
@@ -58,13 +26,16 @@ def subsetsum(array,num):
             return [array[0]]
         else:
             with_v = subsetsum(array[1:],(num - array[0])) 
-            if with_v:
+            if with_v is not None:
                 return [array[0]] + with_v
             else:
                 return subsetsum(array[1:],num)
 
 print(subsetsum(slices, max_slices))
 
+
+def sssLoop(slices, max_slices):
+    pass
 
 def subsetProb(p_slices, n, sum, sub_set):
     if sum <= 0:
