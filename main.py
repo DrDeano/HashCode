@@ -20,9 +20,6 @@ with open(file_name + ".in", "r") as pizza_info:
 
 print(max_slices, types, slices)
 
-
-# r=1812 (quite_big)
-
 def find_r(slices, num):
     largest_subset = 0
     r = 0
@@ -47,7 +44,6 @@ def find_s(r):
     for subset in itertools.combinations(sorted(slices, reverse=True), r=r):
 
         if ((time.time() - current_time) > 5):
-            print("blah")
             return None
         
         print(subset)
@@ -59,15 +55,16 @@ def find_s(r):
                 if final_total == max_slices:
                     break
         else:
-            pass#break
+            pass
+
     if final_subset == []:
         return None
+
     return final_subset
 
 r_val = find_r(slices, max_slices)
 current_guess = []
 for i in range(r_val, r_val-11, -1):
-    print(i)
     res = find_s(i)
     if res is None:
         continue
@@ -76,15 +73,27 @@ for i in range(r_val, r_val-11, -1):
         continue
 
     current_guess = res
-    print()
-    print(res)
-    print(sum(res))
     break
 
+indexes = []
+index_counter = 0
+
+for index in range(len(slices) - 1, 0, -1):
+    if index_counter == len(current_guess):
+        break
+
+    pizza_slice = slices[index]
+    guess_val = current_guess[index_counter]
+    if guess_val == pizza_slice:
+        index_counter += 1
+        indexes.append(index)
+
+indexes = sorted(indexes)
+
+print(indexes)
 print(current_guess)
 print(sum(current_guess))
 
-indexes = [1,2,3,4,5,6,7]
 out = ""
 for i in indexes:
     out = out + str(i) + " "
