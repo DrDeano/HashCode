@@ -2,16 +2,16 @@ import math
 import itertools
 import time
 
+file_name = "b_small"
 line_number = 1
 max_slices = 0
 types = 0
 slices = []
 
-with open("e_also_big.in", "r") as pizza_info:
+with open(file_name + ".in", "r") as pizza_info:
     for line in pizza_info:
         if line_number == 1:
             numbers = line.split()
-
             max_slices = int(numbers[0])
             types = int(numbers[1])
             line_number = 2
@@ -50,7 +50,8 @@ def find_s(r):
             print("blah")
             return None
         
-        #print(sum(subset))
+        print(subset)
+        print(sum(subset))
         if sum(subset) > final_total:
             if sum(subset) <= max_slices: 
                 final_total = sum(subset)
@@ -82,3 +83,12 @@ for i in range(r_val, r_val-11, -1):
 
 print(current_guess)
 print(sum(current_guess))
+
+indexes = [1,2,3,4,5,6,7]
+out = ""
+for i in indexes:
+    out = out + str(i) + " "
+out = out[:-1]
+with open(file_name + ".out", "w") as pizza_out:
+    pizza_out.write(str(len(indexes)) + "\n")
+    pizza_out.write(out)
