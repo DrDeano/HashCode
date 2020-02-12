@@ -70,7 +70,7 @@ for i in range(r_val, r_val-11, -1):
 indexes = []
 index_counter = 0
 
-for index in range(len(slices) - 1, 0, -1):
+for index in range(len(slices) - 1, -1, -1):
     if index_counter == len(current_guess):
         break
 
