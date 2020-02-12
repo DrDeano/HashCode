@@ -23,13 +23,12 @@ print(max_slices, types, slices)
 def find_r(slices, num):
     largest_subset = 0
     r = 0
-
     while(largest_subset < num):
         if len(slices) < 10 + r:
             r = len(slices)
+            break
         else:
             r += 10
-
         for subset in itertools.combinations(sorted(slices, reverse=True), r=r):
             largest_subset = sum(subset)
             break    
@@ -38,32 +37,23 @@ def find_r(slices, num):
 def find_s(r):
     final_total = 0
     final_subset = []
-
     current_time = time.time()
-
     for subset in itertools.combinations(sorted(slices, reverse=True), r=r):
-
         if ((time.time() - current_time) > 5):
             return None
-        
-        print(subset)
-        print(sum(subset))
         if sum(subset) > final_total:
             if sum(subset) <= max_slices: 
                 final_total = sum(subset)
                 final_subset = subset
                 if final_total == max_slices:
                     break
-        else:
-            pass
-
     if final_subset == []:
         return None
-
     return final_subset
 
 r_val = find_r(slices, max_slices)
 current_guess = []
+best_guess = []
 for i in range(r_val, r_val-11, -1):
     res = find_s(i)
     if res is None:
@@ -71,10 +61,9 @@ for i in range(r_val, r_val-11, -1):
     if sum(res) != max_slices:
         current_guess = res
         continue
-
     current_guess = res
     break
-
+print(current_guess)
 indexes = []
 index_counter = 0
 
