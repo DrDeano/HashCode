@@ -2,7 +2,7 @@ import math
 import itertools
 import time
 
-file_name = "b_small"
+file_name = "a_example"
 line_number = 1
 max_slices = 0
 types = 0
@@ -39,6 +39,7 @@ def find_s(r):
     final_subset = []
     current_time = time.time()
     for subset in itertools.combinations(sorted(slices, reverse=True), r=r):
+        print("Subset =", subset)
         if ((time.time() - current_time) > 5):
             return None
         if sum(subset) > final_total:
@@ -55,15 +56,17 @@ r_val = find_r(slices, max_slices)
 current_guess = []
 best_guess = []
 for i in range(r_val, r_val-11, -1):
+    if i == -1:
+        break
     res = find_s(i)
     if res is None:
         continue
-    if sum(res) != max_slices:
+    if (sum(res) != max_slices) and (sum(current_guess) < sum(res)):
         current_guess = res
         continue
     current_guess = res
     break
-print(current_guess)
+print("current guess =", current_guess)
 indexes = []
 index_counter = 0
 
@@ -79,9 +82,9 @@ for index in range(len(slices) - 1, 0, -1):
 
 indexes = sorted(indexes)
 
-print(indexes)
-print(current_guess)
-print(sum(current_guess))
+print("Indexes:", indexes)
+print("currentGuess:", current_guess)
+print("sum:", sum(current_guess))
 
 out = ""
 for i in indexes:
