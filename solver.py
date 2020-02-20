@@ -49,8 +49,18 @@ for library in libraries:
     library.append(total_score)
     total_days = library[1] + math.ceil(library[0] / library[2])
     library.append(total_days)
-    
-
-
 
 print("Libraries: ", libraries)
+
+# for day
+#   if library not being setup:
+#       Start library with highest score
+#       add library to final list
+#   else
+#       decriment library that is being set up
+#       if 0: no library set up next day
+#   for each library that has been set up
+#       send highest scoring book that another library hasn't sent
+#       if none exist take library off, is done
+#   
+#   
