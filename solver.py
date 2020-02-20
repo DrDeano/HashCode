@@ -1,3 +1,5 @@
+import math
+
 file_name = "a_example"
 
 num_of_book = 0
@@ -5,7 +7,7 @@ num_of_libraries = 0
 num_of_days = 0
 
 book_scores = []
-libraries = {}
+libraries = []
 
 library_count = 0
 with open(file_name + ".txt", "r") as in_file:
@@ -25,7 +27,7 @@ with open(file_name + ".txt", "r") as in_file:
             # Library stuff
             if line_number % 2 == 0:
                 # First line of libray info
-                libraries[library_count] = [int(b) for b in line.split()]
+                libraries.append([int(b) for b in line.split()])
             else:
                 # Second line
                 libraries[library_count].append([int(b) for b in line.split()])
@@ -37,4 +39,18 @@ print("Number of libraries: ", num_of_libraries)
 print("Number of days: ", num_of_days)
 
 print("Book scores: ", book_scores)
+print("Libraries: ", libraries)
+
+for library in libraries:
+    total_score = 0
+    books = library[3]
+    for book_index in books:
+        total_score = total_score + book_scores[book_index]
+    library.append(total_score)
+    total_days = library[1] + math.ceil(library[0] / library[2])
+    library.append(total_days)
+    
+
+
+
 print("Libraries: ", libraries)
