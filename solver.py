@@ -56,6 +56,34 @@ for library in libraries:
 
 print("Libraries: ", libraries)
 
+def get_highest_book_index(lib):
+    book_indexs = lib[3]
+    max_book_score = 0
+    for book_index in book_indexs:
+        if 
+
+current_library_being_set_up = -1
+libraries_sending_books = []
+
+for day in range(num_of_days):
+    if current_library_being_set_up == -1:
+        current_lib = libraries[0]
+        current_lib_index = -1
+        for index, lib in enumerate(libraries):
+            if lib[4] > current_lib[4]:
+                current_lib = lib
+                current_lib_index = index
+        current_library_being_set_up = current_lib_index
+        final_libraries.append([current_library_being_set_up])
+        final_number_libraries += 1
+    else:
+        if libraries[current_library_being_set_up][1] == 1: # Pretend this is 0 mate
+            libraries_sending_books.append(current_library_being_set_up)
+            current_library_being_set_up = -1
+    libraries[current_library_being_set_up][1] -= 1
+    for lib_index in libraries_sending_books:
+        lib = library[lib_index]
+        lib_books = 
 # for day
 #   if library not being setup:
 #       Start library with highest score
@@ -68,4 +96,3 @@ print("Libraries: ", libraries)
 #       if none exist take library off, is done
 #   
 #   
-
