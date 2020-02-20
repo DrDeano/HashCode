@@ -58,9 +58,13 @@ print("Libraries: ", libraries)
 
 def get_highest_book_index(lib):
     book_indexs = lib[3]
-    max_book_score = 0
+    max_book_score = -1
+    max_book_scoring_index = -1
     for book_index in book_indexs:
-        if 
+        if book_scores[book_index] > max_book_score:
+            max_book_score = book_scores[book_index]
+            max_book_scoring_index = book_index
+    return max_book_scoring_index
 
 current_library_being_set_up = -1
 libraries_sending_books = []
