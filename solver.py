@@ -107,9 +107,15 @@ for day in range(num_of_days):
                     except:
                         pass
 
+
+for i in range(len(final_libraries)):
+    if final_libraries[i][1] == 0:
+        final_libraries.remove(final_libraries[i])
+        i -= 1
+        final_number_libraries -= 1
+
 print("Final library number: ", final_number_libraries)
 print("Final library array: ", final_libraries)
-
 
 with open(file_name + ".out", "w") as solvedit:
     solvedit.write(str(final_number_libraries) + "\n")
