@@ -9,6 +9,10 @@ num_of_days = 0
 book_scores = []
 libraries = []
 
+final_number_libraries = 0
+final_libraries = []
+
+
 library_count = 0
 with open(file_name + ".txt", "r") as in_file:
     line_number = 0
@@ -64,3 +68,4 @@ print("Libraries: ", libraries)
 #       if none exist take library off, is done
 #   
 #   
+
