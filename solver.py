@@ -69,6 +69,25 @@ def get_highest_book_index(lib):
 current_library_being_set_up = -1
 libraries_sending_books = []
 
+def letsOotput(finalnum, final_lib):
+
+    with open(file_name + ".out", "w") as solvedit:
+        solvedit.write(str(finalnum) + "\n")
+        for i in final_lib :
+            sub = final_lib[i]
+            for j in sub :
+                if j == 0:
+                    solvedit.write(str(sub[j]) + " ")
+                elif j == 1:
+                    solvedit.write(str(sub[j]) + "\n")
+                else :
+                    subsub = sub[j]
+                    for k in subsub:
+                        if k == len(subsub) - 1 :
+                            solvedit.write(str(subsub[k]) + "\n")
+                        else :
+                            solvedit.write(str(subsub[k]) + " ")
+
 for day in range(num_of_days):
     if current_library_being_set_up == -1:
         current_lib = libraries[0]
@@ -87,7 +106,7 @@ for day in range(num_of_days):
     libraries[current_library_being_set_up][1] -= 1
     for lib_index in libraries_sending_books:
         lib = library[lib_index]
-        lib_books = 
+        lib_books =
 # for day
 #   if library not being setup:
 #       Start library with highest score
@@ -98,5 +117,5 @@ for day in range(num_of_days):
 #   for each library that has been set up
 #       send highest scoring book that another library hasn't sent
 #       if none exist take library off, is done
-#   
-#   
+#
+#
