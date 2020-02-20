@@ -95,7 +95,7 @@ for day in range(num_of_days):
                 current_lib = lib
                 current_lib_index = index
         current_library_being_set_up = current_lib_index
-        final_libraries.append([current_library_being_set_up])
+        final_libraries.append([current_library_being_set_up,0,[]])
         final_number_libraries += 1
     else:
         if libraries[current_library_being_set_up][1] == 1: # Pretend this is 0 mate
@@ -104,7 +104,19 @@ for day in range(num_of_days):
     libraries[current_library_being_set_up][1] -= 1
     for lib_index in libraries_sending_books:
         lib = library[lib_index]
-        lib_books =
+        book_index = get_highest_book_index(lib)
+        for fin_lib in final_libraries:
+            if fin_lib[0] == lib_index:
+                fin_lib[2].append(book_index)
+                fin_lib[1] += 1
+                break
+
+        for lib in libraries:
+            lib[3].remove(book_index)
+
+print("Final library number: ", final_number_libraries)
+print("Final library array: ", final_libraries)
+
 # for day
 #   if library not being setup:
 #       Start library with highest score
