@@ -2,7 +2,7 @@ import math
 import itertools
 import time
 
-file_name = "f_press_f"
+file_name = "e_also_big"
 line_number = 1
 max_slices = 0
 types = 0
@@ -17,8 +17,6 @@ with open(file_name + ".in", "r") as pizza_info:
             line_number = 2
         else:
             slices = [int(i) for i in line.split()]
-
-print(max_slices, types, slices)
 
 def find_r(slices, num):
     largest_subset = 0
@@ -39,8 +37,7 @@ def find_s(r):
     final_subset = []
     current_time = time.time()
     for subset in itertools.combinations(sorted(slices, reverse=True), r=r):
-        #print("Subset =", subset)
-        if ((time.time() - current_time) > 5):
+        if ((time.time() - current_time) > 15):
             return None
         if sum(subset) > final_total:
             if sum(subset) <= max_slices: 
@@ -66,7 +63,7 @@ for i in range(r_val, r_val-11, -1):
     if sum(current_guess) < sum(res):
         current_guess = res
         continue
-#print("current guess =", current_guess)
+
 indexes = []
 index_counter = 0
 
@@ -81,10 +78,6 @@ for index in range(len(slices) - 1, -1, -1):
         indexes.append(index)
 
 indexes = sorted(indexes)
-
-print("Indexes:", indexes)
-print("currentGuess:", current_guess)
-print("sum:", sum(current_guess))
 
 out = ""
 for i in indexes:
